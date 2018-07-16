@@ -63,10 +63,12 @@ class UrlParser(object):
             #  If a URLs /resource/ and /resource/{pk} exist, use the base
             #  as the resource. If there is no base resource URL, then include
             path_base = path.split('/{')[0]
+            print ("path %s path_base %s " % (path, path_base))
             if '{' in path and path_base in api_paths:
+                print("continuing")
                 continue
             root_paths.add(path_base)
-
+        print("root_paths collected %s" % root_paths)
         top_level_apis = self.__filter_top_level_apis__(root_paths)
 
         return sorted(top_level_apis, key=self.__get_last_element__)
